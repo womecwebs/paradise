@@ -11,6 +11,9 @@ media_library:
     api_key: 145836922335926
     upload_preset: netlify_cms
 
+media_folder: ""
+public_folder: ""
+
 collections:
   - name: "blog"
     label: "Blog Posts"
@@ -20,6 +23,13 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
+
+      - label: "Featured Image"
+        name: "image"
+        widget: "image"
+        allow_multiple: false
+        required: true
+
       - { label: "Publish Date", name: "date", widget: "datetime" }
       - { label: "Body", name: "body", widget: "markdown" }
 
