@@ -1,0 +1,21 @@
+<header class="continent-hero">
+
+  <div class="hero-overlay">
+    <div class="max-w-1100">
+
+      <h1>{{ heroTitle }}</h1>
+
+      <p>{{ heroDescription }}</p>
+
+    </div>
+  </div>
+
+  {% if continent and continent.data and continent.data.heroImage %}
+    <img
+      src="{{ continent.data.heroImage }}"
+      alt="{{ continent.data.title }}"
+      class="hero-bg"
+    />
+  {% endif %}
+
+</header>

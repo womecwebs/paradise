@@ -7,5 +7,8 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.0"
+  },
+  "dependencies": {
+    "eleventy-plugin-toc": "^1.1.5"
   }
 }

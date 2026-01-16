@@ -1,0 +1,64 @@
+{% set published = date | htmlDateString %}
+{% set modified  = updated or date | htmlDateString %}
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BlogPosting",
+
+ "@id": "https://paradize.life{{ page.url }}#article",
+
+ "mainEntityOfPage": {
+   "@type": "WebPage",
+   "@id": "https://paradize.life{{ page.url }}"
+ },
+
+ "headline": "{{ title | escape }}",
+
+ "description": "{{ excerpt or description or title | escape }}",
+
+ "image": {
+   "@type": "ImageObject",
+   "url": "https://paradize.life{{ image or heroImage or '/images/default-travel.jpg' }}",
+   "caption": "{{ title | escape }}"
+ },
+
+ "datePublished": "{{ published }}",
+ "dateModified": "{{ modified }}",
+
+ "author": {
+   "@type": "Person",
+   "name": "{{ author or 'Paradize Editorial' }}"
+ },
+
+ "publisher": {
+   "@type": "Organization",
+   "name": "Paradize",
+   "logo": {
+     "@type": "ImageObject",
+     "url": "https://paradize.life/images/logo.png"
+   }
+ },
+
+ "about": {
+   "@type": "Place",
+   "name": "{{ destination or country or continent }}"
+ },
+
+ "keywords": "{% if keywords %}{{ keywords | join(', ') }}{% else %}{{ continent }}, {{ country }}, {{ destination }}, luxury travel{% endif %}",
+
+ "articleSection": "{{ category or 'Travel Guide' }}",
+
+ "inLanguage": "en",
+
+ "speakable": {
+   "@type": "SpeakableSpecification",
+   "xpath": [
+     "/html/head/title",
+     "/html/head/meta[@name='description']/@content",
+     "//h1",
+     "//article/p[1]"
+   ]
+ }
+}
+</script>

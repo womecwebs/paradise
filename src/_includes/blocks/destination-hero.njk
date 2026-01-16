@@ -1,0 +1,29 @@
+<section
+  class="w-full h-fit-content mt-70 p-4 p-4-sm mb-4 bg-center bg-cover bg-no-repeat relative"
+  style="
+    background-image:
+      linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.9),
+        rgba(28, 25, 10, 0.5)
+      ),
+      url('{{ heroImage }}');
+  "
+>
+  <div class="flights-hero-overlay">
+    <div class="w-full flex justify-center items-center flex-column mt-70">
+      <div class="w-90 text-left">
+
+        {% if heroTitle %}
+          <h1>{{ heroTitle }}</h1>
+        {% endif %}
+
+        {% if heroDescription %}
+          <p class="color-secondary">{{ heroDescription }}</p>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</section>
+

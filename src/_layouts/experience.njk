@@ -1,0 +1,67 @@
+---
+layout: base.njk
+---
+
+<article class="experience-page">
+
+  <!-- HERO SECTION -->
+  {% set heroTitle = title %}
+  {% set heroDescription = excerpt %}
+  {% include "blocks/destination-hero.njk" %}
+
+  <!-- CONTENT -->
+  <section class="p-20 max-w-1100 mt-40 mb-40">
+    {{ content | safe }}
+  </section>
+
+
+
+  <!-- EXPERIENCE - DESTINATION -->
+  <section class="max-w-1100">
+    <p>
+      <a class="btn" href="/destinations/{{ destination }}/">
+        Explore {{ destination | capitalize }}
+      </a>
+    </p>
+    {% if destination %}
+    <p class="experience-backlink">
+      Part of our luxury guide to
+      <a class="link" href="/destinations/{{ destination }}/">
+        {{ destination | capitalize }}
+      </a>
+    </p>
+    {% endif %}
+  </section>
+
+    <!-- AFFILIATE CTA -->
+  {% if affiliate and affiliate.url %}
+    <section class="experience-cta">
+      <a
+        href="{{ affiliate.url }}"
+        target="_blank"
+        rel="sponsored noopener"
+        class="btn btn-primary"
+      >
+        Book This Experience
+      </a>
+    </section>
+  {% endif %}
+
+  {# --- MORE EXPERIENCES (SAFE VERSION) --- #}
+  <section class="max-w-1100 mb-40 mt-70">
+    <h2>Other Luxury Experiences</h2>
+    <p>Curated luxury experiences worldwide.</p>
+
+    <div class="destination-grid mt-30">
+      {% for exp in collections.experiences %}
+        {% if loop.index <= 10 %}
+          <article class="destination-cards">
+            {% include "blocks/featured-experience.njk" %}
+          </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+
+  {% include "blocks/faq.njk" %}  
+</article>

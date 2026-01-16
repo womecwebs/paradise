@@ -1,0 +1,89 @@
+
+{% set destImage = image or heroImage or "/images/default-destination.jpg" %}
+{% set destDesc = excerpt or description or title %}
+
+{# collect experiences belonging to this destination #}
+{% set relatedExperiences = collections.experience | selectattr("data.destination", "equalto", title | lower) %}
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+
+  {
+    "@type": "TouristDestination",
+    "@id": "https://paradize.life{{ page.url }}#destination",
+
+    "name": "{{ title | escape }}",
+    "description": "{{ destDesc | escape }}",
+
+    "touristType": "Luxury traveler",
+
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://paradize.life{{ destImage }}"
+    },
+
+    "containedInPlace": {
+      "@type": "Country",
+      "name": "{{ country }}"
+    },
+
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "{{ country }}"
+    },
+
+    "keywords": "{{ title }}, {{ country }}, {{ continent }}, luxury travel, experiences",
+
+    "subjectOf": {
+      "@type": "WebPage",
+      "url": "https://paradize.life{{ page.url }}"
+    },
+
+    "hasPart": [
+      {% for exp in relatedExperiences %}
+      {
+        "@type": "TouristAttraction",
+        "name": "{{ exp.data.title | escape }}",
+        "url": "https://paradize.life{{ exp.url }}",
+        "description": "{{ exp.data.excerpt | default(exp.data.description) | escape }}"
+      }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ]
+  },
+
+  {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://paradize.life/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{ continent }}",
+        "item": "https://paradize.life/continents/{{ continent }}/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "{{ country }}",
+        "item": "https://paradize.life/countries/{{ country }}/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "{{ title | escape }}",
+        "item": "https://paradize.life{{ page.url }}"
+      }
+    ]
+  }
+
+ ]
+}
+</script>
+

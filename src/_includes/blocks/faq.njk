@@ -1,0 +1,46 @@
+{% if faqs and faqs.length %}
+
+<section class="faqs-width">
+  <div class="faq-section" id="faq">
+
+    <h2>{{ faqTitle or "Frequently Asked Questions" }}</h2>
+
+    {% for item in faqs %}
+      <div class="faq-item">
+
+        <button class="faq-question" aria-expanded="false">
+          <h5>{{ item.question }}</h5>
+        </button>
+
+        <div class="faq-answer">
+          <p>{{ item.answer | safe }}</p>
+        </div>
+
+      </div>
+    {% endfor %}
+
+  </div>
+</section>
+
+
+{# ===== AEO / Google FAQ SCHEMA ===== #}
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+   {% for item in faqs %}
+   {
+     "@type": "Question",
+     "name": "{{ item.question | escape }}",
+     "acceptedAnswer": {
+       "@type": "Answer",
+       "text": "{{ item.answer | striptags | escape }}"
+     }
+   }{% if not loop.last %},{% endif %}
+   {% endfor %}
+ ]
+}
+</script>
+
+{% endif %}

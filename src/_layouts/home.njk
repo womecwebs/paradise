@@ -1,0 +1,366 @@
+---
+layout: base.njk
+---
+
+{% block content %}
+
+    <!-- HERO -->
+    <section class="hero" id="heros">
+      <div class="hero-container">
+        <h1>
+          Find the World's Most Exclusive
+          <span class="heading">Destinations, Experiences</span> & Travel Guides
+        </h1>
+        <div class="heros-btns">
+          <a
+            href="/where-to-visit-next.html"
+            class="btn2 color-secondary"
+            >Where should I visit next?
+          </a>
+          <a
+            href="/paradise-ai"
+            class="btn3 second-btn"
+            >ask Paradise AI</a
+          >
+        </div>
+      </div>
+      <video
+        class="hero-video"
+        autoplay
+        loop
+        muted
+        playsinline
+        preload="none"
+        width="100%"
+        height="auto"
+        poster="/images/0verwater.webp"
+      >
+        <source src="/images/background2.webm" type="video/webm" />
+        <source src="/images/background2.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </section>
+
+    <!-- AFFILIATE SWIPER -->
+    {% include "blocks/affiliate-cards.njk" %}
+
+    <!-- SEARCH -->
+    <div id="search-container">
+      <h2>Find Your Perfect Travel Experience</h2>
+
+      <input
+        id="searchInput"
+        type="text"
+        placeholder="e.g. flights to Dubai, luxury safari, private jet..."
+        autocomplete="off"
+      />
+      <button class="search-btn" type="button">Search</button>
+
+      <!-- Suggestions dropdown -->
+      <ul id="suggestions" class="search-suggestions"></ul>
+    </div>
+    <!-- load search script -->
+    <script defer src="/js/search.js"></script>
+
+    <!-- FEATURED DESTINATIONS -->
+   <section class="max-w-1100 mt-40 pt-50 pb-50 mb-20">
+
+     <h2 class="pl-4">Top Luxury Destinations</h2>
+     <p class="pl-4">
+       The most loved, best destinations with exclusive and unforgattable experiences this year.
+     </p>
+
+     <div class="featured-destinations mb-60">
+       <div class="swiper categories-swiper">
+         <div class="swiper-wrapper">
+
+           {% for dest in collections.featuredDestinations %}
+             {% include "blocks/featured-destinations.njk" %}
+           {% endfor %}
+
+         </div>
+        </div>
+
+       <div class="swiper-button-next"></div>
+       <div class="swiper-button-prev"></div>
+     </div>
+      <a
+        href="/Destinations"
+        class="btn4 m-3 color-black destination-btn mb-30"
+        >Explore More Destinations</a
+      >
+   </section>
+
+   <!-- FEATURED BLOGS -->
+   <section class="max-w-1100 mt-60 mb-60">
+     <h2>Luxury Travel Guides & Insights</h2>
+     <p>Expert advice, itineraries, and destination inspiration.</p>
+
+     <div class="featured-destinations">
+       <div class="swiper flight-swiper">
+         <div class="swiper-wrapper">
+
+           {% for post in collections.featuredBlogs %}
+             {% include "blocks/blog-cards.njk" %}
+           {% endfor %}
+
+         </div>
+       </div>
+
+       <div class="swiper-button-next"></div>
+       <div class="swiper-button-prev"></div>
+     </div>
+      <a
+        href="/blog"
+        class="btn4 m-3 color-black destination-btn mb-30"
+        >Explore More Travel Guides</a
+      >
+   </section>
+
+    <!-- UNKNOWN YET -->
+    <section class="private-charters mt-70 mb-70">
+      <div class="privatejets-container">
+        <div class="jets-firstcontainer">
+          <div class="jets-grid">
+            <div class="jetsgrid-firsttextcontainer">
+              <h2>Elevate Your Travel Experience</h2>
+              <p>
+                Experience the ultimate in luxury travel with private jet
+                charter services.
+                <a
+                  target="_blank"
+                  rel="nofollow noopener"
+                  class="link"
+                  href="https://www.villiersjets.com/?id=9474"
+                  >Villiers Jets</a
+                >
+                offers unparalleled access to a fleet of over 10,000 private
+                jets worldwide.
+              </p>
+              <h4>Private Jet Charter</h4>
+              <p>
+                Skip the long lines and crowded terminals. Travel on your
+                schedule with personalized service and unparalleled comfort.
+              </p>
+              <ul>
+                <li>✔ Access 10,000+ private jets worldwide in real-time</li>
+                <li>✔ Instant flight search with transparent pricing</li>
+                <li>✔ No delays, no layovers — fly on your schedule</li>
+                <li>✔ VIP service, professional pilots, luxury cabins</li>
+              </ul>
+              <div class="jets-container">
+                <a
+                  href="https://www.villiersjets.com/?id=9474"
+                  target="_blank"
+                  rel="nofollow noopener"
+                  class="btn3"
+                >
+                  Search Flights with Villiers jets</a
+                >
+              </div>
+            </div>
+            <div class="jets-image">
+              <img
+                src="images/charters.webp"
+                alt="Private Jet Interior"
+                width="600"
+                height="400"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EBOOK -->
+   {% include "blocks/ebooks.njk" %}
+
+    <!-- TOURS & EXPERIENCES -->
+   <section class="mt-70 pt-50 mb-60 pb-50 max-w-1100">
+     <div class="p-20 max-w-1100">
+        <h2>Luxury Tours & Experiences</h2>
+        <p>
+          Discover curated, high-end experiences
+          designed for travelers who demand exclusivity, privacy, and
+          unforgettable moments.
+        </p>
+      </div>
+      <div class="destination-grid">
+         {% for exp in collections.experiences %} {% if loop.index <= 6 %}
+        
+        <div class="deals">
+      <div class="card-deals-container">
+
+        <div class="card-daels">
+          <a
+            href="{{ exp.url }}"
+          >
+            <img
+              class="w-full h-full object-cover"
+              loading="lazy"
+              src="{{ exp.data.image }}"
+              alt="{{ exp.data.title }}"
+              width="600"
+              height="400"
+            />
+          </a>
+        </div>
+
+        <div>
+          <a
+            href="{{ exp.url }}"
+          >
+            <h3>{{ exp.data.title }}</h3>
+            <p>{{ exp.data.excerpt }}</p>
+          </a>
+          <a href="{{ exp.url }}" class="link">View experience</a>
+        </div>
+      </div>
+          </div>
+           {% endif %} {% endfor %}
+        </div>
+        <a
+          href="/experiences"
+          class="btn4 m-3 color-black destination-btn mb-30"
+          >Explore More Experiences
+        </a>
+    </section>
+
+
+    
+<!-- TOP 10 COUNTRIES -->
+<section class="max-w-1100 mt-70 mb-70 p-20">
+  <h2>Top Countries With Best Services and Experiences</h2>
+
+  <p>
+    Discover best countries that offer best destinations
+    with exclusive experiences 
+  </p>
+
+  <div class="destination-grid mt-40">
+    {% for c in collections.countries %} {% if loop.index <= 6 %}
+
+    <article class="destination-cards">
+      <img
+        src="{{ c.data.image }}"
+        alt="{{ c.data.title }}"
+        loading="lazy"
+        width="600"
+        height="400"
+      />
+
+      <h3>{{ c.data.title }}</h3>
+
+      <p>{{ c.data.description or c.data.excerpt }}</p>
+
+      <a class="link" href="{{ c.url }}">Explore country</a>
+    </article>
+
+    {% endif %} {% endfor %}
+  </div>
+ <a
+          href="/countries"
+          class="btn4 m-3 color-black destination-btn mt-40 mb-30"
+          >Explore More
+        </a>
+
+</section>
+
+    <!-- CONTINENTS -->
+    <section id="travel1" class="travel-deals pb-50 pt-50">
+      <h2>search Best Destinations by Continents</h2>
+      <p>
+        Luxury hotels, first-class flights, and private island stays at the best
+        prices.
+      </p>
+      <div class="deals dealz max-w-850">
+        <a
+          href="/continents/europe"
+        >
+          <div class="card-daelz cardz1">
+            <h3 class="color-secondary">EUROPE</h3>
+          </div>
+        </a>
+        <a
+          href="/continents/africa"
+        >
+          <div class="card-daelz cardz2">
+            <h3 class="color-secondary">AFRICA</h3>
+          </div>
+        </a>
+        <a href="/continents/asia">
+          <div class="card-daelz cardz3">
+            <h3 class="color-secondary">ASIA</h3>
+          </div>
+        </a>
+      
+      
+        <a
+          href="/continents/north-america"
+        >
+          <div class="card-daelz cardz4">
+            <h3 class="color-secondary">NORTH AMERICA</h3>
+          </div>
+        </a>
+        <a
+          href="/continents/south-america"
+        >
+          <div class="card-daelz cardz5">
+            <h3 class="color-secondary">SOUTH AMERICA</h3>
+          </div>
+        </a>
+        <a
+          href="/continents/australia"
+        >
+          <div class="card-daelz cardz6">
+            <h3 class="color-secondary">AUSTRALIA</h3>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- YOUTUBE VIDEO -->
+    <section class="video-section">
+      <h2>Watch Our Luxury Travel Overview</h2>
+      <p>
+        Discover how to explore the world in style with 5-star hotels, private
+        jets, and exclusive travel experiences.
+      </p>
+
+      <div class="custom-video-container">
+        <iframe
+          src="https://www.youtube.com/embed/dAupJAcyGQY"
+          title="Luxury Paradise Travel Overview"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
+    </section>
+
+    <!-- WHY US -->
+    <section
+      class="why-us-section bg-center bg-cover bg-no-repeat h-75 h-80-sm mt-40 mb-20"
+    >
+      <h2>Why Choose Luxury Paradise Travel?</h2>
+      <p>
+        We help travelers explore the world in style with curated destination
+        guides, trusted booking tools, and exclusive travel insights — all
+        backed by transparent affiliate links and research.
+      </p>
+      <a class="btn" href="/why-us.html">Learn more about how we work →</a>
+    </section>
+
+    <!-- FAQ SECTION  -->
+    {% include "blocks/faq.njk" %}
+
+    <!-- NEWSLETTER / SOCIAL SECTION -->
+    {% include "blocks/newsletter-social.njk" %}
+
+
+    {% include "blocks/floating-menu.njk" %}
+
+{% endblock %}
+

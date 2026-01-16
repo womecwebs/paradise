@@ -33,7 +33,7 @@
   display: grid;
 }
 .grid-auto {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .block {
@@ -371,6 +371,9 @@
 .max-w-850 {
   max-width: 850px;
 }
+.max-w-700 {
+  max-width: 700px;
+}
 .max-w-500 {
   max-width: 500px;
 }
@@ -404,7 +407,7 @@
   width: 40rem;
 }
 .w-80 {
-  width: 90%;
+  width: 80%;
 }
 .w-90 {
   width: 90%;

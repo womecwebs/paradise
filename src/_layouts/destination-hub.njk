@@ -1,0 +1,78 @@
+---
+layout: base.njk
+---
+
+
+    <!-- hero section -->
+    <section class="hero thailand-hero">
+      <div class="slideshow-images">
+        <img
+          src="/images/thai-pool-villa-phuket.webp"
+          width="600"
+          height="400"
+          loading="lazy"
+          alt="The Phuket Aerial view of the sea with infinity pools "
+          class="slide active"
+        />
+        <img
+          src="/images/0verwater.webp"
+          width="600"
+          height="400"
+          loading="lazy"
+          alt="Bora bora Overwater bungalows with Mount Otemanu in the background"
+          class="slide"
+        />
+        <img
+          src="/images/thailand-elephants.webp"
+          alt="travellers having an unforgattable elephant tour experience"
+          loading="lazy"
+          width="600"
+          height="400"
+          class="slide"
+        />
+        <img
+          src="/images/thailand-gears.webp"
+          alt="traveller in a private jet with added privacy and luxury"
+          loading="lazy"
+          width="600"
+          height="400"
+          class="slide"
+        />
+      </div>
+      <div class="hero-overlay">
+        <div id="search-container-hero">
+          <h1 class="hero-title">
+            Discover the World's Finest Luxury Destinations <br />
+          </h1>
+          <!-- Search bar and autocomplet -->
+          <div id="search-container ">
+            <input
+              id="searchInput"
+              type="text"
+              placeholder="e.g. flights to Dubai, luxury safari, private jet..."
+              autocomplete="off"
+            />
+            <button class="search-btn" type="button">Search</button>
+
+            <!-- Suggestions dropdown -->
+            <ul id="suggestions" class="search-suggestions"></ul>
+          </div>
+          <!-- load search script -->
+          <script defer src="/js/search.js"></script>
+        </div>
+      </div>
+    </section>
+
+    {% include "blocks/continents-links.njk" %}
+
+    <!-- PAGE CONTENT -->
+    <main id="destination-hub-content">
+      {{ content | safe }}
+    </main>
+
+    {% include "blocks/ebooks.njk" %}
+   
+    {% include "blocks/newsletter-social.njk" %}
+
+    {% include "blocks/floating-menu.njk" %}
+

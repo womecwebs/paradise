@@ -1,0 +1,42 @@
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+
+ "@type": "Country",
+
+ "name": "{{ title }}",
+ "description": "{{ excerpt }}",
+
+  "containedInPlace": {
+   "@type": "Continent",
+   "name": "{{ continent }}"
+ },
+
+ "hasPart": [
+   {
+     "@type": "WebPage",
+     "name": "Destinations in {{ title }}",
+     "url": "https://paradize.life/countries/{{ slug }}/destinations/"
+   },
+   {
+     "@type": "WebPage",
+     "name": "Experiences in {{ title }}",
+     "url": "https://paradize.life/countries/{{ slug }}/experiences/"
+   },
+   {
+     "@type": "WebPage",
+     "name": "Blogs about {{ title }}",
+     "url": "https://paradize.life/countries/{{ slug }}/blog/"
+   },
+
+ {
+   "@type": "SpeakableSpecification",
+   "xpath": [
+     "/html/head/title",
+     "/html/head/meta[@name='description']/@content"
+   ]
+ }
+ ]
+}
+</script>

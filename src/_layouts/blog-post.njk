@@ -1,0 +1,98 @@
+---
+layout: base.njk
+---
+
+<div class="blog-layout">
+
+  {% include "blocks/blog-sidebar.njk" %}
+
+    <button
+      id="sidebarToggle"
+      class="sidebar-toggle color-black"
+      aria-expanded="false"
+      aria-controls="leftSidebar"
+      aria-label="Open promotions menu"
+    >
+      ☰
+    </button>
+
+  <main class="containerss blog-main">
+
+    {% include "nav-blog.njk" %}
+
+    <article itemscope itemtype="https://schema.org/BlogPosting">
+
+      <section class="h-fit-content rounded-lg new-blogs p-20">
+        <div class="w-full">
+          <h1 itemprop="headline">{{ title }}</h1>
+
+         <div class="blogging-image">
+          <div>
+            <p><em>{{ author_role }}</em></p>
+            <p class="meta">
+              <em>
+               <a itemprop="Paradise Travel Team" href="#author">{{ author }}</a>
+               • Updated
+               <time itemprop="dateModified" datetime="{{ date }}">
+                 {{ date | readableDate }}
+               </time>
+              </em>
+            </p>
+          </div>
+         </div>
+       </div>
+      </section>
+     
+      {% include "blocks/toc-auto.njk" %}
+     
+      {% if featured_image %}
+        <div class="blogging-image-two">
+          <img src="{{ featured_image }}" alt="{{ featured_image_alt }} ">
+        </div>
+      {% endif %}
+
+      <!-- BLOG CONTENT -->
+      <section>
+        {{ content | safe }}
+      </section>
+
+      <!-- RELATED BLOG POSTS -->
+      {% set related = collections.blogs | relatedPosts(page) %}
+
+      {% if related.length %}
+        <section class="related-posts mt-80">
+          <h2>Related Luxury Travel Guides</h2>
+          <p>More expert insights you may find valuable.</p>
+
+          <div class="destination-grid mt-30">
+            {% for post in related %}
+              {% include "blocks/featured-blogs.njk" %}
+            {% endfor %}
+          </div>
+        </section>
+      {% endif %}
+
+
+      {% include "blocks/faq.njk" %}    
+
+      {% include "blocks/related-blogs.njk" %}
+
+      {% include "blocks/author.njk" %}
+
+      {% include "blocks/affiliate-disclaimer.njk" %}
+
+    </article>
+  </main>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

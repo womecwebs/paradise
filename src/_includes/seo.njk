@@ -1,0 +1,48 @@
+{# ===== TITLE LOGIC ===== #}
+{% set metaTitle =
+  seo.title
+  or title
+  or (page.fileSlug | replace("-", " ") | title)
+%}
+
+<title>{{ metaTitle }} | Paradize</title>
+
+{# ===== DESCRIPTION ===== #}
+{% set metaDescription =
+  seo.description
+  or description
+  or excerpt
+  or "Luxury travel guides, experiences and destinations."
+%}
+
+<meta name="description" content="{{ metaDescription }}">
+
+{# ===== CANONICAL ===== #}
+<link rel="canonical" href="https://paradize.life{{ page.url }}">
+
+{# ===== OPEN GRAPH ===== #}
+<meta property="og:type" content="
+{% if layout == 'blog-post.njk' %}article{% else %}website{% endif %}
+">
+
+<meta property="og:title" content="{{ metaTitle }}">
+<meta property="og:description" content="{{ metaDescription }}">
+<meta property="og:url" content="https://paradize.life{{ page.url }}">
+
+{% set metaImage =
+  seo.image
+  or image
+  or heroImage
+  or "/images/default-og.jpg"
+%}
+
+<meta property="og:image" content="https://paradize.life{{ metaImage }}">
+
+{# ===== TWITTER ===== #}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ metaTitle }}">
+<meta name="twitter:description" content="{{ metaDescription }}">
+<meta name="twitter:image" content="https://paradize.life{{ metaImage }}">
+
+{# ===== ROBOTS ===== #}
+<meta name="robots" content="{{ seo.robots or 'index, follow' }}">

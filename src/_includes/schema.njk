@@ -1,0 +1,49 @@
+{# ===== BASE VARIABLES ===== #}
+{% set pageTitle = title or "" %}
+{% set pageDesc  = excerpt or "" %}
+{% set pageImg   = heroImage or image or "" %}
+{% set pageUrl   = page.url or "/" %}
+
+{# ===== GLOBAL FOR ALL PAGES ===== #}
+{% include "schema/schema-global.njk" %}
+
+{# ===== PER LAYOUT ===== #}
+{# ===== content layout ===== #}
+
+{% if layout == "blog-post.njk" %}
+  {% include "schema/content/schema-blog.njk" %}
+{% endif %}
+
+{% if layout == "destination.njk" %}
+  {% include "schema/content/schema-destination.njk" %}
+{% endif %}
+
+{% if layout == "experience.njk" %}
+  {% include "schema/content/schema-experience.njk" %}
+{% endif %}
+
+{% if layout == "country.njk" %}
+  {% include "schema/content/schema-country.njk" %}
+{% endif %}
+
+{% if layout == "continent.njk" %}
+  {% include "schema/content/schema-continent.njk" %}
+{% endif %}
+
+{# ===== hubs layout ===== #}
+
+{% if layout == "country-hub.njk" %}
+  {% include "schema/hubs/countries-hub.njk" %}
+{% endif %}
+
+{% if layout == "destination-hub.njk" %}
+  {% include "schema/hubs/destinations-hub.njk" %}
+{% endif %}
+
+{% if layout == "blog-index.njk" %}
+  {% include "schema/hubs/blog-hub.njk" %}
+{% endif %}
+
+{% if layout == "experience-hub.njk" %}
+  {% include "schema/hubs/experiences-hub.njk" %}
+{% endif %}

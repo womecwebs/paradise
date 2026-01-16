@@ -1,0 +1,50 @@
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+
+  {
+    "@type": "Organization",
+    "@id": "https://paradize.life/#org",
+    "name": "Paradise",
+    "url": "https://paradize.life",
+    "logo": "https://paradize.life/images/icons/favicon-32x32.png",
+    "sameAs": [
+      "https://instagram.com/",
+      "https://pinterest.com/"
+    ]
+  },
+
+  {
+    "@type": "WebSite",
+    "@id": "https://paradize.life/#website",
+    "url": "https://paradize.life",
+    "name": "Paradise",
+    "description": "Luxury travel guides, destinations and experiences worldwide",
+    "publisher": {
+      "@id": "https://paradize.life/#org"
+    },
+
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://paradize.life/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  },
+
+  {
+    "@type": "WebPage",
+    "@id": "https://paradize.life{{ pageUrl }}#webpage",
+    "url": "https://paradize.life{{ pageUrl }}",
+    "name": "{{ pageTitle | escape }}",
+    "description": "{{ pageDesc | escape }}",
+    "primaryImageOfPage": {
+      "@type": "ImageObject",
+      "url": "https://paradize.life{{ pageImg }}"
+    },
+    "isPartOf": { "@id": "https://paradize.life/#website" }
+  }
+
+ ]
+}
+</script>

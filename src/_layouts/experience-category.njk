@@ -1,0 +1,30 @@
+---
+layout: base.njk
+---
+
+{% set categoryName = categoryPage.category %}
+{% set experiences = categoryPage.items %}
+
+
+<!-- Hero section -->
+{% set heroTitle = categoryName | title ~ " Experiences" %}
+{% set heroDescription = "Curated luxury " ~ categoryName ~ " experiences designed for discerning travelers." %}
+
+{% include "blocks/destination-hero.njk" %}
+
+<!-- Category Experiences -->
+<section class="max-w-1100 mt-60 mb-60">
+  <h2 class="color-blue">{{ heroTitle }}</h2>
+
+  {% if experiences and experiences.length %}
+    <div class="destination-grid mt-30">
+      {% for exp in experiences %}
+        {% include "blocks/featured-experience.njk" %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No experiences found in this category.</p>
+  {% endif %}
+</section>
+
+

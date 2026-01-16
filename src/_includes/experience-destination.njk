@@ -1,0 +1,24 @@
+---
+layout: base.njk
+---
+
+<section class="destination-experiences">
+  <h1>Luxury Experiences in {{ title }}</h1>
+
+  {% set matches = collections.experiences | selectattr("data.destination", "equalto", slug) %}
+
+  {% if matches.length %}
+    <ul>
+      {% for exp in matches %}
+        <li>
+          <a href="{{ exp.url }}">{{ exp.data.title }}</a>
+          {% if exp.data.category %}
+            <span>({{ exp.data.category }})</span>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No experiences listed yet.</p>
+  {% endif %}
+</section>

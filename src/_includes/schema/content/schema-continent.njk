@@ -1,0 +1,112 @@
+{% set continentDestinations =
+  collections.destination
+  | selectattr("data.continent", "equalto", slug)
+%}
+
+{% set continentExperiences =
+  collections.experience
+  | selectattr("data.continent", "equalto", slug)
+%}
+
+{% set continentBlogs =
+  collections.blog
+  | selectattr("data.continent", "equalto", slug)
+%}
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+
+ {
+   "@type": "Continent",
+   "@id": "https://paradize.life{{ page.url }}#continent",
+
+   "name": "{{ title }}",
+   "description": "{{ excerpt }}",
+
+   "hasPart": [
+     {
+       "@type": "WebPage",
+       "name": "Destinations in {{ title }}",
+       "url": "https://paradize.life/continents/{{ slug }}/destinations/"
+     },
+     {
+       "@type": "WebPage",
+       "name": "Experiences in {{ title }}",
+       "url": "https://paradize.life/continents/{{ slug }}/experiences/"
+     },
+     {
+       "@type": "WebPage",
+       "name": "Countries in {{ title }}",
+       "url": "https://paradize.life/continents/{{ slug }}/countries/"
+     },
+     {
+       "@type": "WebPage",
+       "name": "Blogs about {{ title }}",
+       "url": "https://paradize.life/continents/{{ slug }}/blog/"
+     }
+   ],
+
+   "subjectOf": {
+     "@type": "WebPage",
+     "url": "https://paradize.life{{ page.url }}"
+   }
+ },
+
+ {
+   "@type": "ItemList",
+   "name": "Top Destinations in {{ title }}",
+   "itemListElement": [
+     {% for d in continentDestinations %}
+     {
+       "@type": "ListItem",
+       "position": {{ loop.index }},
+       "url": "https://paradize.life{{ d.url }}",
+       "name": "{{ d.data.title | escape }}"
+     }{% if not loop.last %},{% endif %}
+     {% endfor %}
+   ]
+ },
+
+ {
+   "@type": "ItemList",
+   "name": "Experiences in {{ title }}",
+   "itemListElement": [
+     {% for e in continentExperiences %}
+     {
+       "@type": "ListItem",
+       "position": {{ loop.index }},
+       "url": "https://paradize.life{{ e.url }}",
+       "name": "{{ e.data.title | escape }}"
+     }{% if not loop.last %},{% endif %}
+     {% endfor %}
+   ]
+ },
+
+ {
+   "@type": "ItemList",
+   "name": "Travel Guides for {{ title }}",
+   "itemListElement": [
+     {% for b in continentBlogs %}
+     {
+       "@type": "ListItem",
+       "position": {{ loop.index }},
+       "url": "https://paradize.life{{ b.url }}",
+       "name": "{{ b.data.title | escape }}"
+     }{% if not loop.last %},{% endif %}
+     {% endfor %}
+   ]
+ },
+
+ {
+   "@type": "SpeakableSpecification",
+   "xpath": [
+     "/html/head/title",
+     "/html/head/meta[@name='description']/@content"
+   ]
+ }
+
+ ]
+}
+</script>

@@ -1,0 +1,79 @@
+{% set topDestinations =
+  collections.destination | sort(false, false, "data.popularity") | slice(0,10)
+%}
+
+{% set featuredExperiences =
+  collections.experience | selectattr("data.featured", "equalto", true)
+%}
+
+{% set featuredBlogs =
+  collections.blog | selectattr("data.featured", "equalto", true)
+%}
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+
+ {
+   "@type": "CollectionPage",
+   "@id": "https://paradize.life/destinations/#collection",
+   "name": "Luxury Travel Destinations",
+   "description": "Discover the world’s best luxury destinations, resorts and exclusive places to visit.",
+   "url": "https://paradize.life/destinations/"
+ },
+
+ {
+   "@type": "ItemList",
+   "name": "Top 10 Destinations",
+   "itemListElement": [
+   {% for d in topDestinations %}
+     {
+       "@type": "ListItem",
+       "position": {{ loop.index }},
+       "url": "https://paradize.life/{{ d.url }}",
+       "name": "{{ d.data.title | escape }}"
+     }{% if not loop.last %},{% endif %}
+   {% endfor %}
+   ]
+ },
+
+ {
+   "@type": "ItemList",
+   "name": "Featured Experiences",
+   "itemListElement": [
+   {% for e in featuredExperiences %}
+     {
+       "@type": "ListItem",
+       "url": "https://paradize.life/{{ e.url }}",
+       "name": "{{ e.data.title | escape }}"
+     }{% if not loop.last %},{% endif %}
+   {% endfor %}
+   ]
+ },
+
+ {
+   "@type": "ItemList",
+   "name": "Featured Blogs",
+   "itemListElement": [
+   {% for b in featuredBlogs %}
+     {
+       "@type": "ListItem",
+       "url": "https://paradize.life/{{ b.url }}",
+       "name": "{{ b.data.title | escape }}"
+     }{% if not loop.last %},{% endif %}
+   {% endfor %}
+   ]
+ },
+
+ {
+   "@type": "SpeakableSpecification",
+   "xpath": [
+     "/html/head/title",
+     "/html/head/meta[@name='description']/@content"
+   ]
+ }
+
+ ]
+}
+</script>

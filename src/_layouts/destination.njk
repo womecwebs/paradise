@@ -2,14 +2,54 @@
 layout: base.njk
 ---
 
-<article class="destination">
-  <h1>{{ title }}</h1>
+{% set heroTitle = title %}
+{% set heroDescription = excerpt %}
+{% include "blocks/destination-hero.njk" %}
 
-  {% if hero_image %}
-    <img src="{{ hero_image }}" alt="{{ title }}">
+<section class="max-w-1100 mt-40 mb-60 p-4">
+  {{ content | safe }}
+</section>
+
+
+<!-- Related Blogs -->
+<section class="max-w-1100 mt-60 mb-60">
+  <h2>Luxury Travel Guides for {{ title }}</h2>
+
+  {% set relatedBlogs = collections.blogs | relatedByDestination(page.fileSlug) %}
+
+  {% if relatedBlogs and relatedBlogs.length %}
+    <div class="blog-grid">
+      {% for blog in relatedBlogs %}
+        {% set post = blog %}
+        {% include "blocks/featured-blogs.njk" %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No related articles yet.</p>
   {% endif %}
+</section>
 
-  <div class="content">
-    {{ content | safe }}
-  </div>
-</article>
+<!-- Related Experiences -->
+<section class="max-w-1100 mt-60 mb-60">
+  <h2>Luxury Experiences in {{ title }}</h2>
+
+  {% set relatedExperiences = collections.experiences | experiencesForDestination(page.fileSlug) %}
+
+  {% if relatedExperiences and relatedExperiences.length %}
+    <div class="experiences-list">
+      {% for experience in relatedExperiences %}
+        {% set exp = experience %}
+        {% include "blocks/featured-experience.njk" %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No experiences listed yet.</p>
+  {% endif %}
+</section>
+
+    {% include "blocks/ebooks.njk" %}
+
+     {% include "blocks/faq.njk" %}  
+   
+    {% include "blocks/newsletter-social.njk" %}
+

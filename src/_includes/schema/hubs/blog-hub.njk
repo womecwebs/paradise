@@ -1,0 +1,55 @@
+{% set allBlogs = collections.blog %}
+{% set featuredBlogs = collections.blog | selectattr("data.featured", "equalto", true) %}
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+
+ {
+   "@type": "CollectionPage",
+   "name": "Travel Guides & Blog",
+   "url": "https://paradize.life/blog/",
+   "description": "Luxury travel guides, tips and destination insights."
+ },
+
+ {
+   "@type": "ItemList",
+   "name": "Featured Travel Guides",
+   "itemListElement": [
+   {% for b in featuredBlogs %}
+     {
+       "@type": "ListItem",
+       "url": "https://paradize.life{{ b.url }}",
+       "name": "{{ b.data.title | escape }}"
+     }{% if not loop.last %},{% endif %}
+   {% endfor %}
+   ]
+ },
+
+ {
+   "@type": "ItemList",
+   "name": "All Travel Blogs",
+   "itemListElement": [
+   {% for b in allBlogs %}
+     {
+       "@type": "ListItem",
+       "position": {{ loop.index }},
+       "url": "https://paradize.life{{ b.url }}",
+       "name": "{{ b.data.title | escape }}"
+     }{% if not loop.last %},{% endif %}
+   {% endfor %}
+   ]
+ },
+
+ {
+   "@type": "SpeakableSpecification",
+   "xpath": [
+     "/html/head/title",
+     "/html/head/meta[@name='description']/@content"
+   ]
+ }
+
+ ]
+}
+</script>

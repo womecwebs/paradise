@@ -1,0 +1,14 @@
+<div class="blog-post swiper-slide">
+  <img
+    src="{{ post.data.image }}"
+    alt="{{ post.data.title }}"
+    loading="lazy"
+    width="600"
+    height="400"
+  />
+  <div class="blogpage-content">
+    <h3 class="heading">{{ post.data.title }}</h3>
+    <p>{{ post.data.excerpt }}</p>
+    <a href="{{ post.url }}" class="link">Read article</a>
+  </div>
+</div>

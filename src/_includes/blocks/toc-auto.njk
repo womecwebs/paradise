@@ -1,0 +1,23 @@
+{% if content %}
+<section aria-label="Table of contents" class="mt-40 mb-40">
+  <div class="faq-item">
+    <button class="faq-question">
+      <h5>Table of Content</h5>
+    </button>
+
+    <div class="faq-answer">
+      <ul>
+        {% for heading in content | toc %}
+          {% if heading.level <= 3 %}
+          <li>
+            <a class="link" href="#{{ heading.id }}">
+              {{ heading.text }}
+            </a>
+          </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+{% endif %}

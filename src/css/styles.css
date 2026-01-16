@@ -115,6 +115,7 @@ tr th {
 .second-btn {
   border-radius: 50px;
 }
+.btn4,
 .btn,
 .btn2,
 .btn3 {
@@ -125,6 +126,7 @@ tr th {
 .btn {
   background: var(--button-color);
   color: var(--secondary-color);
+  border-radius: 8px;
 }
 .btn3 {
   background: var(--button-hover);
@@ -132,11 +134,21 @@ tr th {
   border: 2px solid var(--button-hover);
 }
 .btn2,
+.btn4,
 .thai-btn {
   border: 2px solid var(--button-color);
+}
+
+.btn4 {
+  display: inline-block;
+}
+
+.btn2,
+.thai-btn {
   border-radius: 50px;
 }
-.btn2 {
+.btn2,
+.btn4 {
   background: none;
   color: var(--heading-color);
 }
@@ -144,7 +156,8 @@ tr th {
   color: var(--secondary-color);
 }
 .btn:hover,
-.btn2:hover {
+.btn2:hover,
+.btn4:hover {
   background: var(--button-hover);
   color: var(--heading-color);
 }
@@ -3087,9 +3100,6 @@ blockquote p {
 /* =======================
    Travel Ad Card Styles
 ======================= */
-/* =======================
-   Travel Ad Card Styles
-======================= */
 .travel-ad-card {
   width: 100%;
   max-width: 420px;
@@ -3218,4 +3228,21 @@ blockquote p {
     opacity: 0;
     transform: translateY(-20px);
   }
+}
+
+/* continent styles */
+.continent-hero {
+  position: relative;
+  min-height: 240px;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
 }

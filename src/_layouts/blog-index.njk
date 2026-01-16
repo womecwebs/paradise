@@ -1,0 +1,86 @@
+--- 
+layout: base.njk
+---
+
+<div class="blogpage-layout">
+  {% include "blocks/blog-sidebar.njk" %}
+
+  <section class="containerss blog-main pt-50 pb-50">
+    {% include "nav-blog.njk" %}
+    <div class="max-w-1300 mt-60 ">
+      <!-- HERO -->
+      <section class="h-fit-content rounded-lg new-blogs p-20 pt-50 pb-40 ">
+        <div class="w-full">
+          <h1 itemprop="headline">
+            Luxury Travel Guides & Insider Experiences
+          </h1>
+          <p class="color-secondary">
+            Curated destination guides, luxury itineraries, private experiences,
+            and expert travel planning insights.
+          </p>
+        </div>
+      </section>
+
+      <!-- FEATURED BLOGS -->
+      <section class="max-w-1100 mt-40 mb-60">
+        <h2>Featured Travel Guides</h2>
+        <p>Most-read luxury travel articles and expert recommendations.</p>
+
+        <div class="featured-destinations">
+          <div class="swiper categories-swiper">
+            <div class="swiper-wrapper">
+              {% for post in collections.featuredBlogs %} {% include
+              "blocks/featured-blogs.njk" %} {% endfor %}
+            </div>
+          </div>
+
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </section>
+
+      <!-- ALL BLOG POSTS -->
+      <section class="max-w-1100 mt-60 mb-60">
+        <h2>All Luxury Travel Articles</h2>
+
+        <div class="destination-grid">
+          {% for post in posts %}
+            <article class="blog-post">
+              <img
+                src="{{ post.data.image }}"
+                alt="{{ post.data.title }}"
+                loading="lazy"
+                width="600"
+                height="400"
+              />
+              <div class="blogpage-content">
+                <h3 class="heading">{{ post.data.title }}</h3>
+                <p>{{ post.data.excerpt }}</p>
+                <a href="{{ post.url }}" class="link">Read article</a>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+        <nav class="pagination flex justify-center gap-20 mt-40">
+
+        {% if pagination.href.previous %}
+          <a class="btn3" href="{{ pagination.href.previous }}">
+            ← Previous
+          </a>
+        {% endif %}
+
+        {% if pagination.href.next %}
+          <a class="btn3" href="{{ pagination.href.next }}">
+            Next →
+          </a>
+        {% endif %}
+
+        </nav>
+      </section>
+
+      {% include "blocks/ebooks.njk" %}
+   
+      {% include "blocks/newsletter-social.njk" %}
+    </div>
+  </section>
+</div>

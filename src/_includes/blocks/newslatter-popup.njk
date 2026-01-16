@@ -1,0 +1,41 @@
+    <div id="newsletterPopup" class="newsletter-popup" aria-hidden="true">
+      <div
+        class="popup-content"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="popupTitle"
+      >
+        <button class="popup-close" aria-label="Close">&times;</button>
+        <h2 id="popupTitle">Travel Inspiration Awaits</h2>
+        <p class="pb-40">
+          Discover unique destinations, travel hacks, and luxury travel tips.
+          Subscribe now and get fresh inspiration delivered weekly!
+        </p>
+
+        <script
+          async
+          src="https://subscribe-forms.beehiiv.com/embed.js"
+        ></script>
+        <iframe
+          src="https://subscribe-forms.beehiiv.com/5bc1f419-7a10-4191-be85-76173c604932"
+          class="beehiiv-embed"
+          data-test-id="beehiiv-embed"
+          frameborder="0"
+          scrolling="no"
+          style="
+            width: 526px;
+            height: 173px;
+            margin: 0;
+            border-radius: 0px 0px 0px 0px !important;
+            background-color: transparent;
+            box-shadow: 0 0 #0000;
+            max-width: 100%;
+          "
+        ></iframe>
+        <label class="popup-optout">
+          <input type="checkbox" id="dontShowPopup" class="popups-checkbox" />
+          Don’t show this again
+        </label>
+        <div id="popupMessage" class="popup-message" aria-live="polite"></div>
+      </div>
+    </div>

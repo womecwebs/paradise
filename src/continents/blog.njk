@@ -1,0 +1,58 @@
+---
+layout: base.njk
+title: "Unforgettable Travel Experiences, Curated Worldwide"
+excerpt: "Luxury tours, cultural adventures, and once-in-a-lifetime experiences through trusted partners."
+
+pagination:
+  data: collections.continents
+  size: 30
+  alias: continent
+permalink: "/continents/{{ continent.data.slug }}/blog/"
+
+
+---
+
+{# ----- HERO VARIABLES ----- #}
+
+{% set heroTitle = continent.data.title + " Travel Guides" %}
+
+{% set heroDescription =
+  "Luxury travel guides, tips, and insider stories from "
+  + continent.data.title +
+  "."
+%}
+
+{# CRITICAL: use continent image as hero #}
+{% set heroImage = continent.data.image %}
+
+
+{% include "blocks/continent-hero.njk" %}
+
+
+<section class="max-w-1100 mt-70 mb-70 p-20">
+
+  <h2>{{ continent.data.title }} Travel Articles</h2>
+
+  <div class="destination-grid mt-40 mb-40">
+
+    {% for post in collections.blogs %}
+      {% if post.data.continent == continent.data.slug %}
+
+        <article class="destination-cards">
+          <img 
+             src="{{ post.data.image }}" 
+             alt="{{ post.data.title }}"
+             width="600"
+             height="400"
+             loading="lazy"
+          >
+          <h3>{{ post.data.title }}</h3>
+          <p>{{ post.data.excerpt }}</p>
+          <a href="{{ post.url }}">Read article</a>
+        </article>
+
+      {% endif %}
+    {% endfor %}
+
+  </div>
+</section>

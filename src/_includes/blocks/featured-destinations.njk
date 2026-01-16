@@ -1,0 +1,21 @@
+
+<div class="destination-cards swiper-slide">
+  <img
+    src="{{ dest.data.image }}"
+    alt="Luxury travel in {{ dest.data.title }}"
+    width="600"
+    height="400"
+    loading="lazy"
+  />
+
+  <h3>{{ dest.data.title }}</h3>
+
+  <p>{{ dest.data.excerpt }}</p>
+
+  <a
+    class="btn3"
+    href="{{ dest.url }}"
+  >
+    Explore {{ dest.data.title }}
+  </a>
+</div>

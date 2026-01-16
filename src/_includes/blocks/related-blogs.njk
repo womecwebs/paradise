@@ -1,0 +1,42 @@
+{% if relatedBlogs %}
+<section class="bg-gray mt-40 pb-40" id="related-blogs">
+  <div class="max-w-1100 mt-b-0-auto p-20">
+    <h2 class="fs-1-8 bold color-dark mb-20 border-l-sky pl-1-5">
+      Related Blog Posts
+    </h2>
+
+    <div class="grid grid-auto gap-20">
+      {% for post in relatedBlogs %}
+      <article class="bg-white round-12 shadow-sm transition overflow-hidden">
+        <a href="{{ post.url }}">
+          <img
+            src="{{ post.image }}"
+            alt="{{ post.imageAlt }}"
+            width="600"
+            height="400"
+            loading="lazy"
+            class="w-full h-200 object-cover"
+          />
+        </a>
+
+        <div class="p-1-5">
+          <h3 class="fs-1-2 bold mb-1 color-blue">
+            <a href="{{ post.url }}" class="color-blue">
+              {{ post.title }}
+            </a>
+          </h3>
+
+          <p class="fs-1-2 color-paragraph lh-1-6 mb-2">
+            {{ post.excerpt }}
+          </p>
+
+          <a href="{{ post.url }}" class="color-sky fs-1-2 bold">
+            Read More →
+          </a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}

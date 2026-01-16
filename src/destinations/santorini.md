@@ -1,16 +1,27 @@
 ---
-title: Santorini Luxury Travel Guide
+title: Santorini, Greece
 layout: destination.njk
-permalink: /destinations/santorini/
-hero_image: /images/santorini.jpg
+tags: destination
+continent: europe
+slug: santorini
+country: greece
+
+excerpt: Cliffside luxury, sunset views, private villas, and romantic experiences in the heart of the Aegean.
+
+image: /images/dome.webp
+
+featured: true
+popularScore: 92
 ---
 
-Santorini is one of the most iconic luxury destinations in Europe.
+## Why Visit Santorini?
 
-## Where to Stay
+Santorini is one of the world’s most iconic luxury destinations...
 
-Luxury hotels and cliffside villas dominate the island.
+## Best Luxury Hotels
 
-## Best Time to Visit
+[affiliate links]
 
-May to October for warm weather and yacht experiences.
+## Private Experiences
+
+[content]

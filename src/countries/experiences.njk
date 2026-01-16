@@ -1,0 +1,43 @@
+---
+layout: base.njk
+pagination:
+  data: collections.countries
+  size: 1
+  alias: country
+permalink: "/countries/{{ country.data.slug }}/experiences/"
+---
+
+{% set heroTitle = country.data.title + " Experiences" %}
+
+{% set heroDescription =
+  "Handpicked luxury experiences in "
+  + country.data.title +
+  " – private tours, yachts, culture and adventure."
+%}
+
+{% set heroImage = country.data.image %}
+
+{% include "blocks/continent-hero.njk" %}
+
+
+<section class="max-w-1100 mt-60">
+
+  <h2>Experiences in {{ country.data.title }}</h2>
+
+  <div class="destination-grid">
+
+  {% for exp in collections.experiences %}
+    {% if exp.data.country == country.data.slug %}
+
+      <article class="destination-cards">
+        <img src="{{ exp.data.image }}" />
+        <h3>{{ exp.data.title }}</h3>
+        <p>{{ exp.data.excerpt }}</p>
+        <a href="{{ exp.url }}">View experience</a>
+      </article>
+
+    {% endif %}
+  {% endfor %}
+
+  </div>
+</section>

@@ -1,0 +1,31 @@
+      <div class="card-deals-container">
+
+        <div class="card-daels">
+          <a
+            href="{{ exp.url }}"
+          >
+            <img
+              class="w-full h-full object-cover"
+              loading="lazy"
+              src="{{ exp.data.image }}"
+              alt="{{ exp.data.title }}"
+              width="600"
+              height="400"
+            />
+          </a>
+        </div>
+
+        <div>
+          <a
+            href="{{ exp.url }}"
+          >
+            <h3>{{ exp.data.title }}</h3>
+            <p>{{ exp.data.excerpt }}</p>
+          </a>
+          <a href="{{ exp.url }}" class="link">View experience</a>
+        </div>
+      </div>
+
+
+
+

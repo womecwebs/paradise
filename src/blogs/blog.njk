@@ -1,0 +1,14 @@
+---
+layout: blog-index.njk
+title: Luxury Travel Blog – Guides, Destinations & Experiences
+description: Expert luxury travel guides, destination insights, and exclusive experiences for high-end travelers.
+
+pagination:
+  data: collections.blogs
+  size: 30
+  alias: posts
+  reverse: true
+
+permalink: "/blog/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
+---
+

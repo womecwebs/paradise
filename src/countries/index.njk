@@ -1,0 +1,99 @@
+---
+layout: country-hub.njk
+title: Luxury Countries & Exclusive Experiences
+description: Discover the world’s best countries for luxury travel, private tours, and premium experiences.
+---
+
+{# ===== HERO ===== #}
+<section
+  class="w-full h-fit-content mt-70 p-4 p-4-sm mb-4 bg-center bg-cover bg-no-repeat relative"
+  style="
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.7),
+        rgba(28, 25, 10, 0.5)
+      ),
+      url('/images/amalfi.webp');
+  "
+>
+  <div class="flights-hero-overlay">
+    <div
+      class="w-full flex justify-center items-center flex-column mt-70 mb-70"
+    >
+      <div class="w-90 text-left">
+        <h1>{{ title }}</h1>
+        <p class="color-secondary max-w-700">{{ description }}</p>
+        <!-- Search bar and autocomplet -->
+        <div id="search-container mb-40">
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="e.g. flights to Dubai, luxury safari, private jet..."
+            autocomplete="off"
+          />
+          <button class="search-btn" type="button">Search</button>
+
+          <!-- Suggestions dropdown -->
+          <ul id="suggestions" class="search-suggestions"></ul>
+        </div>
+        <!-- load search script -->
+        <script defer src="/js/search.js"></script>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ===== TOP 10 COUNTRIES ===== #}
+<section class="max-w-1100 mt-70 mb-70 p-20">
+  <h2>Top Countries with Exclusive Experiences</h2>
+
+  <p>
+    These destinations offer the best combination of luxury hotels, private
+    experiences, culture, and premium travel infrastructure.
+  </p>
+
+  <div class="destination-grid mt-40">
+    {% for c in collections.countries %} {% if loop.index <= 6 %}
+
+    <article class="destination-cards">
+      <img
+        src="{{ c.data.image }}"
+        alt="{{ c.data.title }}"
+        loading="lazy"
+        width="600"
+        height="400"
+      />
+
+      <h3>{{ c.data.title }}</h3>
+
+      <p>{{ c.data.description or c.data.excerpt }}</p>
+
+      <a class="link" href="{{ c.url }}">Explore country</a>
+    </article>
+
+    {% endif %} {% endfor %}
+  </div>
+</section>
+
+{# ===== ALL COUNTRIES ===== #}
+<section class="max-w-1100 mt-70 mb-70 p-20">
+  <h2>All Luxury Travel Countries</h2>
+
+  <div class="destination-grid mt-40">
+    {% for c in collections.countries %}
+
+    <article class="destination-cards">
+      <img src="{{ c.data.image }}" alt="{{ c.data.title }}" loading="lazy" />
+
+      <h3>{{ c.data.title }}</h3>
+
+      <a class="link" href="{{ c.url }}">View destinations</a>
+    </article>
+
+    {% endfor %}
+  </div>
+</section>
+
+  {% include "blocks/ebooks.njk" %}
+  {% include "blocks/newsletter-social.njk" %}
+  {% include "blocks/floating-menu.njk" %}

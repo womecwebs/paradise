@@ -1,0 +1,40 @@
+{% set allCountries = collections.country %}
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+
+ {
+   "@type": "CollectionPage",
+   "name": "Travel by Country",
+   "url": "https://paradize.life/countries/",
+   "description": "Explore luxury travel guides by country."
+ },
+
+ {
+   "@type": "ItemList",
+   "name": "All Countries",
+   "itemListElement": [
+   {% for c in allCountries %}
+     {
+       "@type": "ListItem",
+       "position": {{ loop.index }},
+       "url": "https://paradize.life{{ c.url }}",
+       "name": "{{ c.data.title | escape }}"
+     }{% if not loop.last %},{% endif %}
+   {% endfor %}
+   ]
+ },
+
+ {
+   "@type": "SpeakableSpecification",
+   "xpath": [
+     "/html/head/title",
+     "/html/head/meta[@name='description']/@content"
+   ]
+ }
+
+ ]
+}
+</script>

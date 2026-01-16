@@ -1,0 +1,131 @@
+---
+layout: base.njk
+---
+
+   <!-- HERO -->
+   <section
+     class="w-full h-fit-content mt-70 p-4 p-4-sm mb-4 bg-center bg-cover bg-no-repeat relative"
+     style="
+       background-image:
+         linear-gradient(
+           to right,
+           rgba(0, 0, 0, 0.7),
+           rgba(28, 25, 10, 0.5)
+         ),
+         url('/images/thailand-girl.webp');
+     "
+   >
+     <div class="flights-hero-overlay">
+       <div class="w-full flex justify-center items-center flex-column mt-70 mb-70">
+         <div class="w-90 text-left">     
+             <h1>Unforgettable Travel Experiences, Curated Worldwide</h1>
+             <p class="color-secondary">
+                Discover unforgettable travel experiences worldwide
+             </p>
+             <!-- Search bar and autocomplet -->
+             <div id="search-container mb-40">
+               <input
+                 id="searchInput"
+                 type="text"
+                 placeholder="e.g. flights to Dubai, luxury safari, private jet..."
+                 autocomplete="off"
+               />
+               <button class="search-btn" type="button">Search</button>
+
+               <!-- Suggestions dropdown -->
+               <ul id="suggestions" class="search-suggestions"></ul>
+             </div>
+             <!-- load search script -->
+             <script defer src="/js/search.js"></script>
+
+         </div>
+       </div>
+     </div>
+   </section>
+
+   <!-- EXPERIENCE CATEGORIES -->
+   <section class="luxury-section max-w-1100 mt-40 mb-60">
+     <div class="p-20 max-w-1100">
+       <h2 >Explore Experiences by Category</h2>
+       <p>Choose the type of experience that fits your travel style.</p>
+     </div>
+     <div class="destination-grid mt-30">
+       {% for category, items in collections.experienceCategories %}
+         <article class="luxury-card">
+           <img
+             loading="lazy"
+             width="600"
+             height="400"
+             src="/images/{{ category }}.webp"
+             alt="{{ category | title }} luxury experiences"
+           />
+
+           <div class="luxury-card-content">
+             <h3>{{ category | title }}</h3>
+
+             <p>
+               {{ items | length }} curated luxury
+               {{ category | title | lower }} experiences
+             </p>
+
+             <a
+               class="link"
+               href="/experiences/{{ category | slug }}/"
+             >
+               Explore {{ category | title }} →
+             </a>
+           </div>
+         </article>
+       {% endfor %}
+     </div>
+   </section>
+
+   <!-- featured Experiences -->
+   <section class="mt-70 pt-50 mb-60 pb-50 max-w-1100">
+     <div class="p-20 max-w-1100">
+        <h2>Luxury Tours & Experiences</h2>
+        <p>
+          Discover curated, high-end experiences
+          designed for travelers who demand exclusivity, privacy, and
+          unforgettable moments.
+        </p>
+      </div>
+
+      <div class="deals">
+        {% for exp in collections.featuredExperiences %}
+          {% include "blocks/featured-experience.njk" %}
+        {% endfor %}
+      </div>
+      <div class="flex gap-10 flex-wrap w-30r m-3 pl-1-5">
+        <a href="/experiences" class="btn2 color-dark">
+          Explore more
+        </a>
+      </div>
+    </section>
+
+    <!-- ALL EXPERIENCES -->
+    <section class="max-w-1100 mb-40">
+      <h2>All Luxury Experiences</h2>
+      <p>Browse all curated luxury experiences worldwide.</p>
+
+      <div class="destination-grid mt-30">
+        {% for exp in collections.experiences %}
+          <article class="destination-cards">
+            <img
+              src="{{ exp.data.image }}"
+              alt="{{ exp.data.title }}"
+              loading="lazy"
+            />
+            <h3>{{ exp.data.title }}</h3>
+            <p>{{ exp.data.excerpt }}</p>
+            <a href="{{ exp.url }}" class="btn3">View experience</a>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+
+     {% include "blocks/ebooks.njk" %}
+   
+    {% include "blocks/newsletter-social.njk" %}
+
+    {% include "blocks/floating-menu.njk" %}

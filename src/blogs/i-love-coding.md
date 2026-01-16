@@ -1,11 +1,17 @@
 ---
-title: "CMS Pipeline Test"
-date: 2025-01-02T10:00:00.000Z
-image: https://res.cloudinary.com/...
-layout: blog.njk
-tags: blog
+layout: blog-post.njk
+title: "I Love Coding"
+description: "Why coding has become one of the most valuable skills in the modern digital economy."
+date: 2025-01-01
+image: /images/maldives.webp
+featured: true
+
+seo:
+  title: "Why People Love Coding in 2025"
+  description: "Discover why coding is more relevant than ever, from careers to building real-world products."
+
+schema:
+  type: "BlogPosting"
 ---
 
 w﻿hy do people love creating apps and websites
-
-![](https://res.cloudinary.com/dxqnpsj8k/image/upload/v1767124887/ChatGPT_Image_Dec_30_2025_08_42_16_PM_f2dhbc.png)

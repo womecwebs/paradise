@@ -1,4 +1,10 @@
 node_modules/
 _site/
-images/uploads/
+
+# IGNORE LOCAL IMAGE LIBRARY
+images/
+src/images/
+public/images/
+
 npm-debug.log*
+.DS_Store

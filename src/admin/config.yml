@@ -1,7 +1,6 @@
 backend:
   name: git-gateway
   branch: main
-
   publish_mode: editorial_workflow
 
 media_library:
@@ -14,45 +13,259 @@ media_library:
 media_folder: ""
 public_folder: ""
 
+# =========================
+# COLLECTIONS
+# =========================
+
 collections:
+  # -------- BLOGS --------
   - name: "blog"
     label: "Blog Posts"
     folder: "src/blogs"
     create: true
-    delete: false
     slug: "{{slug}}"
+    editor:
+      preview: false
+
     fields:
+      - {
+          label: "Layout",
+          name: "layout",
+          widget: "hidden",
+          default: "blog-post.njk",
+        }
+
       - { label: "Title", name: "title", widget: "string" }
+
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
 
       - label: "Featured Image"
         name: "image"
         widget: "image"
         allow_multiple: false
-        required: true
 
       - { label: "Publish Date", name: "date", widget: "datetime" }
+
+      - label: "Continent"
+        name: "continent"
+        widget: "relation"
+        collection: "continents"
+        search_fields: ["title"]
+        value_field: "slug"
+        display_fields: ["title"]
+
+      - label: "Country"
+        name: "country"
+        widget: "relation"
+        collection: "countries"
+        search_fields: ["title"]
+        value_field: "slug"
+        display_fields: ["title"]
+
+      - label: "Destination"
+        name: "destination"
+        widget: "string"
+        required: false
+
+      - label: "FAQs"
+        name: "faqs"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Question", name: "question", widget: "string" }
+          - { label: "Answer", name: "answer", widget: "text" }
+
+      - label: "SEO"
+        name: "seo"
+        widget: "object"
+        required: false
+        fields:
+          - {
+              label: "Meta Title",
+              name: "title",
+              widget: "string",
+              required: false,
+            }
+          - {
+              label: "Meta Description",
+              name: "description",
+              widget: "text",
+              required: false,
+            }
+
       - { label: "Body", name: "body", widget: "markdown" }
 
+  # -------- DESTINATIONS --------
   - name: "destinations"
     label: "Destinations"
     folder: "src/destinations"
     create: true
     slug: "{{slug}}"
+
     fields:
-      - { label: "Title", name: "title", widget: "string" }
       - {
-          label: "Hero Image",
-          name: "hero_image",
-          widget: "image",
-          required: false,
+          label: "Layout",
+          name: "layout",
+          widget: "hidden",
+          default: "destination.njk",
         }
+
+      - { label: "Title", name: "title", widget: "string" }
+
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
+
+      - label: "Hero Image"
+        name: "heroImage"
+        widget: "image"
+
+      - label: "Continent"
+        name: "continent"
+        widget: "relation"
+        collection: "continents"
+        search_fields: ["title"]
+        value_field: "slug"
+        display_fields: ["title"]
+
+      - label: "Country"
+        name: "country"
+        widget: "relation"
+        collection: "countries"
+        search_fields: ["title"]
+        value_field: "slug"
+        display_fields: ["title"]
+
+      - {
+          label: "Featured",
+          name: "featured",
+          widget: "boolean",
+          default: false,
+        }
+
+      - label: "FAQs"
+        name: "faqs"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Question", name: "question", widget: "string" }
+          - { label: "Answer", name: "answer", widget: "text" }
+
       - { label: "Body", name: "body", widget: "markdown" }
 
-  - name: "pages"
-    label: "Pages"
-    folder: "src/pages"
+  # -------- EXPERIENCES --------
+  - name: "experiences"
+    label: "Experiences"
+    folder: "src/experiences"
     create: true
     slug: "{{slug}}"
+
     fields:
+      - {
+          label: "Layout",
+          name: "layout",
+          widget: "hidden",
+          default: "experience.njk",
+        }
+
       - { label: "Title", name: "title", widget: "string" }
+
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
+
+      - label: "Hero Image"
+        name: "heroImage"
+        widget: "image"
+
+      - label: "Continent"
+        name: "continent"
+        widget: "relation"
+        collection: "continents"
+        search_fields: ["title"]
+        value_field: "slug"
+        display_fields: ["title"]
+
+      - label: "Country"
+        name: "country"
+        widget: "relation"
+        collection: "countries"
+        search_fields: ["title"]
+        value_field: "slug"
+        display_fields: ["title"]
+
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options: ["yacht", "culture", "adventure", "luxury", "food", "wellness"]
+
+      - {
+          label: "Featured",
+          name: "featured",
+          widget: "boolean",
+          default: false,
+        }
+
+      - label: "FAQs"
+        name: "faqs"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Question", name: "question", widget: "string" }
+          - { label: "Answer", name: "answer", widget: "text" }
+
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # -------- COUNTRIES --------
+  - name: "countries"
+    label: "Countries"
+    folder: "src/countries"
+    create: true
+    slug: "{{slug}}"
+
+    fields:
+      - {
+          label: "Layout",
+          name: "layout",
+          widget: "hidden",
+          default: "country.njk",
+        }
+
+      - { label: "Title", name: "title", widget: "string" }
+
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
+
+      - label: "Hero Image"
+        name: "heroImage"
+        widget: "image"
+
+      - label: "Continent"
+        name: "continent"
+        widget: "relation"
+        collection: "continents"
+        search_fields: ["title"]
+        value_field: "slug"
+        display_fields: ["title"]
+
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # -------- CONTINENTS --------
+  - name: "continents"
+    label: "Continents"
+    folder: "src/continents"
+    create: true
+    slug: "{{slug}}"
+
+    fields:
+      - {
+          label: "Layout",
+          name: "layout",
+          widget: "hidden",
+          default: "continent.njk",
+        }
+
+      - { label: "Title", name: "title", widget: "string" }
+
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
+
+      - label: "Hero Image"
+        name: "heroImage"
+        widget: "image"
+
       - { label: "Body", name: "body", widget: "markdown" }

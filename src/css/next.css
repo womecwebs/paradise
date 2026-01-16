@@ -327,7 +327,7 @@ html,
   color: var(--secondary-color);
   font-size: 1.5rem;
 }
-.btn {
+/* .btn {
   display: inline-block;
   padding: 8px 12px;
   border-radius: 8px;
@@ -336,7 +336,7 @@ html,
   text-decoration: none;
   border: 1px solid rgba(255, 255, 255, 0.06);
   font-weight: 700;
-}
+} */
 .btn-cta {
   background: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%);
   color: #fff;

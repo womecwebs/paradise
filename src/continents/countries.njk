@@ -1,0 +1,47 @@
+---
+layout: base.njk
+pagination:
+  data: collections.continents
+  size: 30
+  alias: continent
+permalink: "/continents/{{ continent.data.slug }}/countries/"
+---
+
+{% set heroTitle = "Countries in " + continent.data.title %}
+
+{% set heroDescription =
+  "Explore countries across "
+  + continent.data.title +
+  " with hand-picked destinations and experiences."
+%}
+
+{% include "blocks/continent-hero.njk" %}
+
+
+<section class="max-w-1100 mt-70 mb-70 p-20">
+
+  <h2>Countries in {{ continent.data.title }}</h2>
+
+  <div class="destination-grid mt-40 mb-40">
+
+    {% for c in collections.countries %}
+      {% if c.data.continent == continent.data.slug %}
+
+        <article class="destination-cards mt-70 mb-70">
+          <img 
+             src="{{ c.data.image }}" 
+             alt="{{ c.data.title }}"
+             width="600"
+             height="400"
+             loading="lazy"
+          >
+          <h3>{{ c.data.title }}</h3>
+          <p>{{ c.data.excerpt }}</p>
+          <a href="{{ c.url }}">Explore country</a>
+        </article>
+
+      {% endif %}
+    {% endfor %}
+
+  </div>
+</section>

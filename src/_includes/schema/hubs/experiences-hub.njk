@@ -1,0 +1,55 @@
+{% set allExperiences = collections.experience %}
+{% set featuredExperiences = collections.experience | selectattr("data.featured", "equalto", true) %}
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+
+ {
+   "@type": "CollectionPage",
+   "name": "Luxury Travel Experiences",
+   "url": "https://paradize.life/experiences/",
+   "description": "Hand-picked luxury tours, cruises, adventures and cultural experiences."
+ },
+
+ {
+   "@type": "ItemList",
+   "name": "Featured Experiences",
+   "itemListElement": [
+   {% for e in featuredExperiences %}
+     {
+       "@type": "ListItem",
+       "url": "https://paradize.life{{ e.url }}",
+       "name": "{{ e.data.title | escape }}"
+     }{% if not loop.last %},{% endif %}
+   {% endfor %}
+   ]
+ },
+
+ {
+   "@type": "ItemList",
+   "name": "All Experiences",
+   "itemListElement": [
+   {% for e in allExperiences %}
+     {
+       "@type": "ListItem",
+       "position": {{ loop.index }},
+       "url": "https://paradize.life{{ e.url }}",
+       "name": "{{ e.data.title | escape }}"
+     }{% if not loop.last %},{% endif %}
+   {% endfor %}
+   ]
+ },
+
+ {
+   "@type": "SpeakableSpecification",
+   "xpath": [
+     "/html/head/title",
+     "/html/head/meta[@name='description']/@content"
+   ]
+ }
+
+ ]
+}
+</script>
